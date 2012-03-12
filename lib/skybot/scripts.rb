@@ -5,18 +5,11 @@ module Skybot
   class Scripts
 
     def self.respond(regex)
-      puts 'in respond'
-      puts @@bot.class
-      puts "respond '#{@@bot.message}'"
       matches = regex.match(@@bot.message)
-      if regex.match @@bot.message
-        puts 'yield'
-        yield(@@bot, matches)
-      end
+      yield(@@bot, matches) if matches
     end
 
     def self.process(bot)
-      puts "in process #{bot.class}"
       @@bot = bot
       Dir[File.dirname(__FILE__) + "/../../scripts/*.rb"].each do |filename|
         script = ''
