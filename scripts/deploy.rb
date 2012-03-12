@@ -6,7 +6,7 @@ module Skybot
       Deploy project
 
       Usage:
-        Bot deploy branch [branch_name] of [project_name] to [env_name]
+        [Botname] deploy branch [branch_name] of [project_name] to [env_name]
     }
   }
   Scripts.register settings do |bot, matches|
@@ -27,7 +27,7 @@ module Skybot
       Rollback deployed project to previous version
 
       Usage:
-        Bot rollback [project_name] on [env_name]
+        [Botname] rollback [project_name] on [env_name]
     }
   }
   Scripts.register settings do |bot, matches|

@@ -6,7 +6,7 @@ module Skybot
       Displaying weather in city
 
       Usage:
-        Bot weather in [City]
+        [Botname] weather in [City]
     }
   }
   Scripts.register settings do |bot, matches|

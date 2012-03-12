@@ -6,8 +6,8 @@ module Skybot
       Basic script
       
       Usage:
-        Bot say hello
-        Bot say [something]
+        [Botname] say hello
+        [Botname] say [something]
     }
   }
   Scripts.register settings do |bot, matches|

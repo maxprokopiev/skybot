@@ -6,7 +6,7 @@ module Skybot
       Fetches first citation from bash.org.ru RSS feed
 
       Usage:
-        Bot bash me
+        [Botname] bash me
     }
   }
   Scripts.register settings do |bot, matches|

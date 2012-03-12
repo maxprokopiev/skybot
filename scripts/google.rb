@@ -6,7 +6,7 @@ module Skybot
       Googles for you and replies with first link
 
       Usage:
-        Bot google me [search query]
+        [Botname] google me [search query]
     }
   }
   Scripts.register settings do |bot, matches|

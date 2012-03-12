@@ -3,7 +3,11 @@ require File.dirname(__FILE__) + '/config'
 module Skybot
 
   class Scripts
-   
+
+    def self.scripts
+      @@scripts
+    end
+
     def self.register(settings, &block)
       @@scripts << { :settings => settings, :code_block => block }
     end
