@@ -29,7 +29,7 @@ module Skybot
     def process_message msg
       if Skybot::Bot.message_for_me? msg
         @bot = Skybot::Bot.create_or_find_by_chat(msg.get_chat)
-        @bot.set_message msg.get_body.to_s.chomp
+        @bot.set_message msg
         Skybot::Scripts.process(@bot)
       end
     rescue Exception => e

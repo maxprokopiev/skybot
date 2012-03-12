@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/config'
 module Skybot
 
   class Bot
-    attr_accessor :config, :chat, :message
+    attr_accessor :config, :chat, :message, :message_from
 
     @@bots = []
     @@config = Skybot::Config.load
@@ -21,15 +21,24 @@ module Skybot
     end
 
     def set_message(msg)
-      self.message = $1 if msg.match MESSAGE_PATTERN
+      if Bot.fetch_message_body(msg).match MESSAGE_PATTERN
+        self.message = $1 
+        self.message_from = msg.get_from.to_s
+      end
     end
 
     def self.message_for_me?(message)
-      message.get_body.to_s.chomp.match MESSAGE_PATTERN
+      self.fetch_message_body(message).match MESSAGE_PATTERN
     end
 
     def self.create_or_find_by_chat(chat)
       @@bots.find {|bot| bot.chat == chat} || Bot.new(:chat => chat)
+    end
+
+    private
+     
+    def self.fetch_message_body(msg)
+      msg.get_body.to_s.chomp
     end
 
   end
