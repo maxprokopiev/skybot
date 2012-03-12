@@ -1,11 +1,11 @@
-Skybot
+= Skybot
 
-TRS skype bot
+Skype bot
 
-Comands
+= Commands
 
 Bot say hello
 Bot google me [something]
 Bot weather in [City]
-
-No russian language support yet
+Bot bash me
+Bot deploy branch [branch_name] of [project_name] to [env_name]
