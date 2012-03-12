@@ -1,6 +1,15 @@
 module Skybot
-  # Bot deploy branch master of project to staging
-  Scripts.respond /deploy branch (.+?) of (.+?) to (.+?)$/ do |bot, matches|
+  settings = {
+    :name => :deploy,
+    :command => /deploy branch (.+?) of (.+?) to (.+?)$/,
+    :description => %q{
+      Deploy project
+
+      Usage:
+        Bot deploy branch [branch_name] of [project_name] to [env_name]
+    }
+  }
+  Scripts.register settings do |bot, matches|
     project = matches[2]
     project_path = bot.config[project.to_sym]
     branch = matches[1]
@@ -11,7 +20,17 @@ module Skybot
     bot.reply "/me deployed branch #{branch} of #{project} to #{env}"
   end
 
-  Scripts.respond /rollback (.+?) on (.+?)$/ do |bot, matches|
+  settings = {
+    :name => :rollback,
+    :command => /rollback (.+?) on (.+?)$/,
+    :description => %q{
+      Rollback deployed project to previous version
+
+      Usage:
+        Bot rollback [project_name] on [env_name]
+    }
+  }
+  Scripts.register settings do |bot, matches|
     project = matches[1]
     project_path = bot.config[project.to_sym]
     env = matches[2]

@@ -1,7 +1,17 @@
 module Skybot
-  Scripts.respond /weather in (.+)/ do |bot, matches|
+  settings = {
+    :name => :weather,
+    :command => /weather in (.+)/,
+    :description => %q{
+      Displaying weather in city
+
+      Usage:
+        Bot weather in [City]
+    }
+  }
+  Scripts.register settings do |bot, matches|
     require 'open-uri'
-    page = open("http://www.google.com/ig/api?weather=#{matches[1]}").read
+    page = open("http://www.google.com/ig/api?weather=#{URI.encode(matches[1])}").read
     require 'rexml/document'
     doc = REXML::Document.new page
     weather = ''

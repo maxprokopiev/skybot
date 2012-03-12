@@ -1,5 +1,15 @@
 module Skybot
-  Scripts.respond /bash me/ do |bot, matches|
+  settings = {
+    :name => :bash_me,
+    :command => /bash me/,
+    :description => %q{
+      Fetches first citation from bash.org.ru RSS feed
+
+      Usage:
+        Bot bash me
+    }
+  }
+  Scripts.register settings do |bot, matches|
     require 'rss/2.0'
     require 'cgi'
     require 'open-uri'

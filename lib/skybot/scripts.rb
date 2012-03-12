@@ -4,14 +4,14 @@ module Skybot
 
   class Scripts
    
-    def self.respond(regex, &block)
-      @@scripts << [regex, block]
+    def self.register(settings, &block)
+      @@scripts << { :settings => settings, :code_block => block }
     end
 
     def self.process(bot)
       @@scripts.each do |script|
-        matches = script[0].match(bot.message)
-        script[1].call(bot, matches) if matches
+        matches = script[:settings][:command].match(bot.message)
+        script[:code_block].call(bot, matches) if matches
       end
     rescue Exception => e
       puts "#{ e } (#{ e.class })!"
