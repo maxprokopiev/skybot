@@ -3,26 +3,26 @@ require File.dirname(__FILE__) + '/config'
 module Skybot
 
   class Scripts
-
-    def self.respond(regex)
-      matches = regex.match(@@bot.message)
-      yield(@@bot, matches) if matches
+   
+    def self.respond(regex, &block)
+      @@scripts << [regex, block]
     end
 
     def self.process(bot)
-      @@bot = bot
-      Dir[File.dirname(__FILE__) + "/../../scripts/*.rb"].each do |filename|
-        script = ''
-        File.open(filename, 'r') do |file| 
-          file.each_line { |line| script += line } 
-        end
-        begin
-          Scripts.class_eval script
-        rescue Exception => e
-          puts "#{ e } (#{ e.class })!"
-        end
+      @@scripts.each do |script|
+        matches = script[0].match(bot.message)
+        script[1].call(bot, matches) if matches
       end
+    rescue Exception => e
+      puts "#{ e } (#{ e.class })!"
+      puts e.backtrace
     end
+
+    def self.load_scripts
+      @@scripts = []
+      Dir[File.dirname(__FILE__) + '/../../scripts/*.rb'].each { |script| require script }
+    end
+    load_scripts
 
   end
 
