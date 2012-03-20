@@ -13,9 +13,11 @@ module Skybot
     require 'open-uri'
     require 'uri'
     puts "google query: #{matches[1]}"
-    page = open(URI.escape("http://www.google.com/search?q=#{URI.encode(matches[1])}")).read
+    url = URI.escape("http://www.google.com/search?q=#{matches[1]}")
+    puts url
+    page = open(url).read
     #puts page
-    match = page.match(/"r"><a\shref="(\/url\?q=)?(.+?)"/)
+    match = page.match(/"r"><a\shref="(\/url\?q=)?(.+?)&.*"/)
     if !match.nil?
       bot.reply match[2]
     else
