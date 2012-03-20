@@ -4,6 +4,17 @@ Bot for skype with custom commands.
 
 # Setup
 
+#### Versions && Dependencies
+* Skype
+* ruby 1.8.7
+* Ruby4Skype (0.4.1)
+
+Copy skype framework to system path:
+
+    cp -R /Applications/Skype.app/Contents/Frameworks/Skype.framework /System/Library/Frameworks/Skype.framework
+
+#### Config file
+
 Create settings file config/config.yml with initial data:
 
     ---
