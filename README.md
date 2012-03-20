@@ -2,6 +2,13 @@
 
 Bot for skype with custom commands.
 
+# Setup
+
+Create settings file config/config.yml with initial data:
+
+    ---
+    :name: Bot
+
 # Commands
 
 - Bot say hello
